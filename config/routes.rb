@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
-  get 'login/login'
-
-  get 'login/logout'
 
   resources :parents
-
+  resources :teachers
+  get 'login/login'
+  get 'login/logout'
+  post 'login/login' => 'parents#index'
+  
+  get    'login'   => 'sessions#new'
+  post   'login'   => 'sessions#create'
+  delete 'logout'  => 'sessions#destroy'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -12,7 +16,7 @@ Rails.application.routes.draw do
   root 'login#login'
 
   # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  # get 'products/:id' => 'catalog#view'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
